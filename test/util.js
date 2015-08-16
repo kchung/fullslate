@@ -26,18 +26,20 @@ const util = {
 
   /**
    * Get FullSlate key from env
-   * @return {string} FullSlate key defined in env
+   * @return {string} FullSlate key defined as env, if none provided
+   *   `NO_KEY` will be returned (some tests will fail)
    */
   getKey() {
-    return process.env.FULLSLATE_KEY;
+    return process.env.FULLSLATE_KEY || 'NO_KEY';
   },
 
   /**
    * Get FullSlate token from env
-   * @return {string} FullSlate token defined in env
+   * @return {string} FullSlate token defined as env, if none provided
+   *   `NO_TOKEN` will be returned (some tests will fail)
    */
   getToken() {
-    return process.env.FULLSLATE_TOKEN;
+    return process.env.FULLSLATE_TOKEN || 'NO_TOKEN';
   },
 
   /**
