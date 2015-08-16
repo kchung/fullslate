@@ -73,6 +73,44 @@ class FullSlate {
     });
   }
 
+  /**
+   * Services resource
+   * @param {number} [id] Service ID to limit details to a single service
+   * @throws Will throw error if service id is not a number
+   * @return {Promise.<(Array|Object), Error>} Resolve with the API
+   *   response: if `id` provided, an object of the service will be
+   *   returned, if no `id` provided, an array of all services will
+   *   be returned. Reject with request or API error.
+   */
+  services(id) {
+    if (typeof id !== 'undefined' && !Number.isInteger(id)) {
+      throw new Error('Invalid service id');
+    }
+
+    return new Promise((resolve, reject) => {
+      let endpoint = 'services';
+
+      // Update endpoint if `id` is provided
+      if (id) {
+        endpoint = endpoint + `/${id}`;
+      }
+
+      request.get(this.path + endpoint)
+        .query({
+          'auth': this.token
+        })
+        .end((err, res) => {
+          if (res.body.failure) {
+            reject(res.body);
+          } else if (err) {
+            reject(err);
+          }
+
+          resolve(res.body);
+        });
+    });
+  }
+
 };
 
 export default FullSlate;
