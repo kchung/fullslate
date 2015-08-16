@@ -121,6 +121,9 @@ class FullSlate {
    * @param {string} [options.after] Openings after this date (RFC 3339
    *   formatted date)
    * @param {string} [options.window] Valid window values are 'week' or 'month'
+   * @throws Error will be thrown if `services` is invalid or missing
+   * @return {Promise.<Object, Error>} Resolve with the API response
+   *   Reject with request or API error.
    */
   openings(services, options = {}) {
 
