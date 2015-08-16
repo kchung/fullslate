@@ -22,6 +22,7 @@
     "babel": "^5.8.21"
   },
   "dependencies": {
+    "superagent": "^1.3.0"
   },
   "main": "lib/fullslate",
   "license": "MIT"
