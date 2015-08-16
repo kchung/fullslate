@@ -24,13 +24,11 @@ describe('Employees API', () => {
             : done(); // make test inconclusive
         })
         .then((employee) => {
-          const { id, first_name, last_name, services } = employee;
-
           expect(employee).to.be.an('object');
-          expect(id).to.exist;
-          expect(first_name).to.exist;
-          expect(last_name).to.exist;
-          expect(services).to.exist;
+          expect(employee).to.have.any.keys([
+            'id', 'description', 'first_name', 'last_name', 'services'
+          ]);
+          expect(employee.services).to.be.an('array');
         })
         .then(done);
     });
