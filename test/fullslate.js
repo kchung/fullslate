@@ -1,15 +1,15 @@
 import { expect } from 'chai';
-import FullSlate from '../src/FullSlate';
+import util from './util';
 
 describe('FullSlate class', () => {
   describe('construction', () => {
 
     it('should fail when no key provided', () => {
-      expect(() => new FullSlate()).to.throw('No key defined');
+      expect(() => util.getFullSlate({})).to.throw('No key defined');
     });
 
     it('should store correct key', () => {
-      const fsapi = new FullSlate({
+      const fsapi = util.getFullSlate({
         key: 'test_key',
         token: 'test_token'
       });
@@ -18,7 +18,7 @@ describe('FullSlate class', () => {
     });
 
     it('should store correct token', () => {
-      const fsapi = new FullSlate({
+      const fsapi = util.getFullSlate({
         key: 'test_key',
         token: 'test_token'
       });
@@ -27,7 +27,7 @@ describe('FullSlate class', () => {
     });
 
     it('should build correct path' , () => {
-      const fsapi = new FullSlate({
+      const fsapi = util.getFullSlate({
         key: 'test_key',
         token: 'test_token'
       });

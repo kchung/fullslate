@@ -1,15 +1,11 @@
 import { expect } from 'chai';
-import FullSlate from '../src/FullSlate';
+import util from './util';
 
 describe('Employees API', () => {
   describe('fetch', () => {
-    const { FULLSLATE_KEY, FULLSLATE_TOKEN } = process.env;
 
     it('should get employee list', (done) => {
-      const fsapi = new FullSlate({
-        key: FULLSLATE_KEY,
-        token: FULLSLATE_TOKEN
-      });
+      const fsapi = util.getFullSlate();
 
       fsapi.employees()
         .then((employees) => {
@@ -19,10 +15,7 @@ describe('Employees API', () => {
     });
 
     it('should get single employee', (done) => {
-      const fsapi = new FullSlate({
-        key: FULLSLATE_KEY,
-        token: FULLSLATE_TOKEN
-      });
+      const fsapi = util.getFullSlate();
 
       fsapi.employees()
         .then((employees) => {
@@ -43,10 +36,7 @@ describe('Employees API', () => {
     });
 
     it('should reject invalid employee', (done) => {
-      const fsapi = new FullSlate({
-        key: FULLSLATE_KEY,
-        token: FULLSLATE_TOKEN
-      });
+      const fsapi = util.getFullSlate();
 
       fsapi.employees(-1)
         .catch((result) => {
@@ -59,10 +49,7 @@ describe('Employees API', () => {
     });
 
     it('should reject invalid employee number', () => {
-      const fsapi = new FullSlate({
-        key: FULLSLATE_KEY,
-        token: FULLSLATE_TOKEN
-      });
+      const fsapi = util.getFullSlate();
 
       expect(() => fsapi.employees('invalid_id')).to.throw('Invalid employee id');
     });
