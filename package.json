@@ -1,0 +1,27 @@
+{
+  "name": "fullslate-node",
+  "version": "0.0.1",
+  "description": "NodeJS wrapper for FullSlate API",
+  "keywords": [
+    "fullslate"
+  ],
+  "author": "Kevin Chung <kevin@chun.gd>",
+  "contributors": [
+    { "name": "Kevin Chung", "email": "kevin@chun.gd" }
+  ],
+  "homepage": "https://github.com/kchung/fullslate-node",
+  "bugs": "https://github.com/kchung/fullslate-node/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kchung/fullslate-node.git"
+  },
+  "engines": {
+    "node": ">= v0.12.0"
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+  },
+  "main": "lib/fullslate",
+  "license": "MIT"
+}
