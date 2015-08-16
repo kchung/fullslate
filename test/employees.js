@@ -4,6 +4,18 @@ import util from './util';
 describe('Employees API', () => {
   describe('fetch', () => {
 
+    it('should reject request with invalid query parameter', (done) => {
+      const fsapi = util.getFullSlate();
+
+      fsapi.employees(-1)
+        .catch((result) => {
+          expect(result.failure).to.be.true;
+          expect(result.errorMessage).to.equal('Employee not found.');
+          done();
+        })
+        .catch(done);
+    });
+
     it('should get employee list', (done) => {
       const fsapi = util.getFullSlate();
 
@@ -35,21 +47,7 @@ describe('Employees API', () => {
         .catch(done);
     });
 
-    it('should reject invalid employee', (done) => {
-      const fsapi = util.getFullSlate();
-
-      fsapi.employees(-1)
-        .catch((result) => {
-          const { failure, errorMessage } = result;
-
-          expect(failure).to.be.true;
-          expect(errorMessage).to.equal('Employee not found.');
-          done();
-        })
-        .catch(done);
-    });
-
-    it('should reject invalid employee number', () => {
+    it('should throw error on invalid employee number', () => {
       const fsapi = util.getFullSlate();
 
       expect(() => fsapi.employees('invalid_id')).to.throw('Invalid employee id');
