@@ -40,7 +40,7 @@ class FullSlate {
    *   employee
    * @throws Will throw error if employee id is not a number
    * @return {Promise.<(Array|Object), Error>} Resolve with the API
-   *   response: if `id` provided an object of the employee will be
+   *   response: if `id` provided, an object of the employee will be
    *   returned, if no `id` provided, an array of all employees will
    *   be returned. Reject with request or API error.
    */
