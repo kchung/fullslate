@@ -11,7 +11,8 @@ describe('Employees API', () => {
         .then((employees) => {
           expect(employees).to.be.an('array');
         })
-        .then(done);
+        .then(done)
+        .catch(done);
     });
 
     it('should get single employee', (done) => {
@@ -30,7 +31,8 @@ describe('Employees API', () => {
           ]);
           expect(employee.services).to.be.an('array');
         })
-        .then(done);
+        .then(done)
+        .catch(done);
     });
 
     it('should reject invalid employee', (done) => {
@@ -43,7 +45,8 @@ describe('Employees API', () => {
           expect(failure).to.be.true;
           expect(errorMessage).to.equal('Employee not found.');
           done();
-        });
+        })
+        .catch(done);
     });
 
     it('should reject invalid employee number', () => {
