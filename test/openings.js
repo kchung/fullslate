@@ -55,13 +55,18 @@ describe('Openings API', () => {
       }
     });
 
-    it.skip('should get openings for multiple services', (done) => {
+    it('should get openings for multiple services', (done) => {
       const fsapi = util.getFullSlate();
 
       if (services.length) {
         return fsapi.openings(services.splice(0, 2).map((key) => key.id))
           .then((openings) => {
-            // My account doesn't have multiple services, I can't test!
+            expect(openings).to.be.an('object');
+            expect(openings).to.have.any.keys([
+              'matches', 'tz', 'success'
+            ]);
+            expect(openings.success).to.be.true;
+            expect(openings.matches).to.be.an('array');
           })
           .then(done)
           .catch(done);

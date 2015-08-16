@@ -143,7 +143,7 @@ class FullSlate {
       };
 
       // Build services array
-      params.services = Array.isArray(services)
+      params['services[]'] = Array.isArray(services)
         ? services.join(',')
         : services;
 
