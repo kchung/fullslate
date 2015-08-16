@@ -34,6 +34,45 @@ class FullSlate {
     this.path = this.path.replace('{key}', this.key);
   }
 
+  /**
+   * Employees resource
+   * @param {number} [id] Employee ID to limit details to a single
+   *   employee
+   * @throws Will throw error if employee id is not a number
+   * @return {Promise.<(Array|Object), Error>} Resolve with the API
+   *   response: if `id` provided an object of the employee will be
+   *   returned, if no `id` provided, an array of all employees will
+   *   be returned. Reject with request or API error.
+   */
+  employees(id) {
+    if (typeof id !== 'undefined' && !Number.isInteger(id)) {
+      throw new Error('Invalid employee id');
+    }
+
+    return new Promise((resolve, reject) => {
+      let endpoint = 'employees';
+
+      // Update endpoint if `id` is provided
+      if (id) {
+        endpoint = endpoint + `/${id}`;
+      }
+
+      request.get(this.path + endpoint)
+        .query({
+          'auth': this.token
+        })
+        .end((err, res) => {
+          if (res.body.failure) {
+            reject(res.body);
+          } else if (err) {
+            reject(err);
+          }
+
+          resolve(res.body);
+        });
+    });
+  }
+
 };
 
 export default FullSlate;
