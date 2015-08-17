@@ -39,8 +39,8 @@ class FullSlate {
    * @param {number} [id] Employee ID to limit details to a single
    *   employee
    * @throws Will throw error if employee id is not a number
-   * @return {Promise.<(Array|Object), Error>} Resolve with the API
-   *   response: if `id` provided, an object of the employee will be
+   * @return {Promise.<(Array|Object), (Object|Error)>} Resolve with the
+   *   API response: if `id` provided, an object of the employee will be
    *   returned, if no `id` provided, an array of all employees will
    *   be returned. Reject with request or API error.
    */
@@ -77,8 +77,8 @@ class FullSlate {
    * Services resource
    * @param {number} [id] Service ID to limit details to a single service
    * @throws Will throw error if service id is not a number
-   * @return {Promise.<(Array|Object), Error>} Resolve with the API
-   *   response: if `id` provided, an object of the service will be
+   * @return {Promise.<(Array|Object), (Object|Error)>} Resolve with the
+   *   API response: if `id` provided, an object of the service will be
    *   returned, if no `id` provided, an array of all services will
    *   be returned. Reject with request or API error.
    */
