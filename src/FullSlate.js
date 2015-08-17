@@ -164,6 +164,35 @@ class FullSlate {
     });
   }
 
+  /**
+   * Bookings resource; fetching booking only
+   * @param {string} id FullSlate booking id
+   * @throws Error will be thrown on invalid booking id
+   * @return {Promise.<Object, (Object|Error)>} Resolve with the
+   *   booking response. Reject with request or API error
+   */
+  bookings(id) {
+    if (typeof id === 'undefined') {
+      throw new Error('Invalid booking id');
+    }
+
+    return new Promise((resolve, reject) => {
+      const endpoint = `bookings/${id}`;
+
+      request.get(this.path + endpoint)
+        .query()
+        .end((err, res) => {
+          if (res.body.failure) {
+            reject(res.body);
+          } else if (err) {
+            reject(err);
+          }
+
+          resolve(res.body);
+        });
+    });
+  }
+
 };
 
 export default FullSlate;
