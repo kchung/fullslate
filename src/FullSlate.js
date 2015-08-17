@@ -122,7 +122,7 @@ class FullSlate {
    *   formatted date)
    * @param {string} [options.window] Valid window values are 'week' or 'month'
    * @throws Error will be thrown if `services` is invalid or missing
-   * @return {Promise.<Object, Error>} Resolve with the API response
+   * @return {Promise.<Object, (Object|Error)>} Resolve with the API response
    *   Reject with request or API error.
    */
   openings(services, options = {}) {
@@ -155,9 +155,11 @@ class FullSlate {
         .end((err, res) => {
           if (res.body.failure) {
             reject(res.body);
-          } else {
-            resolve(res.body);
+          } else if (err) {
+            reject(err);
           }
+
+          resolve(res.body);
         });
     });
   }
