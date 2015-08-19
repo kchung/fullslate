@@ -180,7 +180,47 @@ class FullSlate {
       const endpoint = `bookings/${id}`;
 
       request.get(this.path + endpoint)
-        .query()
+        .end((err, res) => {
+          if (res.body.failure) {
+            reject(res.body);
+          } else if (err) {
+            reject(err);
+          }
+
+          resolve(res.body);
+        });
+    });
+  }
+
+  /**
+   * Book a booking through bookings resource
+   * @param {object} options
+   * @param {string} options.at Booking time
+   * @param {number} options.service Service ID
+   * @param {string} options.first_name Client first name
+   * @param {string} options.last_name Client last name
+   * @throws Error will be thrown on invalid required parameters
+   * @return {Promise.<Object, (Object|Error)>} Resolve with the
+   *   booking response. Reject with request or API error
+   */
+  book(options = {}) {
+    const { at, service, first_name, last_name } = options;
+
+    if (typeof at === 'undefined') {
+      throw new Error('Invalid at time');
+    } else if (typeof service === 'undefined') {
+      throw new Error('Invalid service');
+    } else if (typeof first_name === 'undefined') {
+      throw new Error('Invalid first name');
+    } else if (typeof last_name === 'undefined') {
+      throw new Error('Invalid last name');
+    }
+
+    return new Promise((resolve, reject) => {
+      const endpoint = 'bookings';
+
+      request.post(this.path + endpoint)
+        .send(options)
         .end((err, res) => {
           if (res.body.failure) {
             reject(res.body);
