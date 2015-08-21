@@ -14,10 +14,10 @@ class FullSlate {
   path = 'https://{key}.fullslate.com/api/'
 
   /**
-   * @constructs FullSlate
-   * @param {object} options FullSlate API options
-   * @param {string} options.key FullSlate key (e.g {key}.fullslate.com)
-   * @param {string} [options.token] FullSlate API token
+   * @constructor FullSlate
+   * @param {Object} options FullSlate API options
+   * @param {String} options.key FullSlate key (e.g {key}.fullslate.com)
+   * @param {String} [options.token] FullSlate API token
    * @throws Will throw error if the FullSlate key isn't defined
    */
   constructor(options = {}) {
@@ -36,7 +36,7 @@ class FullSlate {
 
   /**
    * Employees resource
-   * @param {number} [id] Employee ID to limit details to a single
+   * @param {Number} [id] Employee ID to limit details to a single
    *   employee
    * @throws Will throw error if employee id is not a number
    * @return {Promise.<(Array|Object), (Object|Error)>} Resolve with the
@@ -59,7 +59,7 @@ class FullSlate {
 
       request.get(this.path + endpoint)
         .query({
-          'auth': this.token
+          auth: this.token,
         })
         .end((err, res) => {
           if (res.body.failure) {
@@ -75,7 +75,7 @@ class FullSlate {
 
   /**
    * Services resource
-   * @param {number} [id] Service ID to limit details to a single service
+   * @param {Number} [id] Service ID to limit details to a single service
    * @throws Will throw error if service id is not a number
    * @return {Promise.<(Array|Object), (Object|Error)>} Resolve with the
    *   API response: if `id` provided, an object of the service will be
@@ -97,7 +97,7 @@ class FullSlate {
 
       request.get(this.path + endpoint)
         .query({
-          'auth': this.token
+          auth: this.token,
         })
         .end((err, res) => {
           if (res.body.failure) {
@@ -113,14 +113,14 @@ class FullSlate {
 
   /**
    * Openings resource
-   * @param {number|number[]} services A single service id or an array
+   * @param {Number|Number[]} services A single service id or an array
    *   of service ids
-   * @param {object} [options] Optional opening options
-   * @param {string} [options.before] Openings before this date (RFC 3339
+   * @param {Object} [options] Optional opening options
+   * @param {String} [options.before] Openings before this date (RFC 3339
    *   formatted date)
-   * @param {string} [options.after] Openings after this date (RFC 3339
+   * @param {String} [options.after] Openings after this date (RFC 3339
    *   formatted date)
-   * @param {string} [options.window] Valid window values are 'week' or 'month'
+   * @param {String} [options.window] Valid window values are 'week' or 'month'
    * @throws Error will be thrown if `services` is invalid or missing
    * @return {Promise.<Object, (Object|Error)>} Resolve with the API response
    *   Reject with request or API error.
@@ -142,7 +142,7 @@ class FullSlate {
       const endpoint = 'openings';
       let params = {
         auth: this.token,
-        ...options
+        ...options,
       };
 
       // Build services array
@@ -166,7 +166,7 @@ class FullSlate {
 
   /**
    * Bookings resource; fetching booking only
-   * @param {string} id FullSlate booking id
+   * @param {String} id FullSlate booking id
    * @throws Error will be thrown on invalid booking id
    * @return {Promise.<Object, (Object|Error)>} Resolve with the
    *   booking response. Reject with request or API error
@@ -194,11 +194,11 @@ class FullSlate {
 
   /**
    * Book a booking through bookings resource
-   * @param {object} options
-   * @param {string} options.at Booking time
-   * @param {number} options.service Service ID
-   * @param {string} options.first_name Client first name
-   * @param {string} options.last_name Client last name
+   * @param {Object} options
+   * @param {String} options.at Booking time
+   * @param {Number} options.service Service ID
+   * @param {String} options.first_name Client first name
+   * @param {String} options.last_name Client last name
    * @throws Error will be thrown on invalid required parameters
    * @return {Promise.<Object, (Object|Error)>} Resolve with the
    *   booking response. Reject with request or API error
@@ -236,9 +236,9 @@ class FullSlate {
   /**
    * Clients resource, this is a private company resource so a token is
    * required
-   * @param {number} [id] Client ID to limit details to a single client
-   * @param {object} [options]
-   * @param {array} [options.include] Additional fields to request for:
+   * @param {Number} [id] Client ID to limit details to a single client
+   * @param {Object} [options]
+   * @param {Array} [options.include] Additional fields to request for:
    *   'emails', 'phone_numbers', 'addresses', and 'links'
    * @throws Error will be thrown if API not initialized with token
    * @return {Promise.<(Object|Array), Error>} Resolve with client request.
@@ -258,7 +258,7 @@ class FullSlate {
     return new Promise((resolve, reject) => {
       let endpoint = 'clients';
       let params = {
-          'auth': this.token
+        auth: this.token,
       };
 
       if (id) {
@@ -286,12 +286,12 @@ class FullSlate {
   /**
    * Events resource, this is a private company resource so a token is
    * required
-   * @param {number} [id] Event ID to limit details to a single event
-   * @param {object} [options]
-   * @param {boolean} [options.occurrences]
-   * @param {string} [options.start] Date format yyyy-mm-dd
-   * @param {string} [options.stop] Date format yyyy-mm-dd
-   * @param {string} [options.changed_since] Date format yyyy-mm-dd
+   * @param {Number} [id] Event ID to limit details to a single event
+   * @param {Object} [options]
+   * @param {Boolean} [options.occurrences]
+   * @param {String} [options.start] Date format yyyy-mm-dd
+   * @param {String} [options.stop] Date format yyyy-mm-dd
+   * @param {String} [options.changed_since] Date format yyyy-mm-dd
    * @throws Error will be thrown if API not initialized with token
    * @return {Promise.<(Array|Object), Error>} Resolve with events request.
    *   Reject with request or API error.
@@ -311,7 +311,7 @@ class FullSlate {
       let endpoint = 'events';
       let params = {
         auth: this.token,
-        ...options
+        ...options,
       };
 
       if (id) {
@@ -335,7 +335,7 @@ class FullSlate {
   /**
    * Products resource, this is a private company resource so a token is
    * required
-   * @param {number} [id] Product ID to limit details to a single product
+   * @param {Number} [id] Product ID to limit details to a single product
    * @throws Error will be thrown if API not initialized with token
    * @return {Promise.<(Object|Array), Error>} Resolve with products request.
    *   Reject with request or API error.
@@ -348,7 +348,7 @@ class FullSlate {
     return new Promise((resolve, reject) => {
       let endpoint = 'products';
       let params = {
-        auth: this.token
+        auth: this.token,
       };
 
       if (id) {
@@ -372,7 +372,7 @@ class FullSlate {
   /**
    * Vouchers resource, this is a private company resource so a token is
    * required
-   * @param {number} [id] Product ID to limit details to a voucher product
+   * @param {Number} [id] Product ID to limit details to a voucher product
    * @throws Error will be thrown if API not initialized with token
    * @return {Promise.<(Object|Array), Error>} Resolve with vouchers request.
    *   Reject with request or API error.
@@ -385,7 +385,7 @@ class FullSlate {
     return new Promise((resolve, reject) => {
       let endpoint = 'vouchers';
       let params = {
-        auth: this.token
+        auth: this.token,
       };
 
       if (id) {
