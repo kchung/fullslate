@@ -283,6 +283,54 @@ class FullSlate {
     });
   }
 
+  /**
+   * Events resource, this is a private company resource so a token is
+   * required
+   * @param {number} [id] Event ID to limit details to a single event
+   * @param {object} [options]
+   * @param {boolean} [options.occurrences]
+   * @param {string} [options.start] Date format yyyy-mm-dd
+   * @param {string} [options.stop] Date format yyyy-mm-dd
+   * @param {string} [options.changed_since] Date format yyyy-mm-dd
+   * @return {Promise.<(Array|Object), Error>} Resolve with events request.
+   *   Reject with request or API error.
+   */
+  events(id, options = {}) {
+    if (typeof this.token === 'undefined') {
+      throw new Error('FullSlate token missing');
+    }
+
+    // If only options are passed, swap out id params
+    if (typeof id === 'object') {
+      options = id;
+      id = undefined;
+    }
+
+    return new Promise((resolve, reject) => {
+      let endpoint = 'events';
+      let params = {
+        auth: this.token,
+        ...options
+      };
+
+      if (id) {
+        endpoint = endpoint + `/${id}`;
+      }
+
+      request.get(this.path + endpoint)
+        .query(params)
+        .end((err, res) => {
+          if (res.body.failure) {
+            reject(res.body);
+          } else if (err) {
+            reject(err);
+          }
+
+          resolve(res.body);
+        });
+    });
+  }
+
 };
 
 export default FullSlate;
