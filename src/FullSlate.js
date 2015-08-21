@@ -233,6 +233,56 @@ class FullSlate {
     });
   }
 
+  /**
+   * Clients resource, this is a private company resource so a token is
+   * required
+   * @param {number} [id] Client ID to limit details to a single client
+   * @param {object} [options]
+   * @param {array} [options.include] Additional fields to request for:
+   *   'emails', 'phone_numbers', 'addresses', and 'links'
+   * @throws Error will be thrown if API not initialized with token
+   * @return {Promise.<(Object|Array), Error>} Resolve with client request.
+   *   Reject with request or API error.
+   */
+  clients(id, options = {}) {
+    if (typeof this.token === 'undefined') {
+      throw new Error('FullSlate token missing');
+    }
+
+    // If only options are passed, swap out id params
+    if (typeof id === 'object') {
+      options = id;
+      id = undefined;
+    }
+
+    return new Promise((resolve, reject) => {
+      let endpoint = 'clients';
+      let params = {
+          'auth': this.token
+      };
+
+      if (id) {
+        endpoint = endpoint + `/${id}`;
+      }
+
+      if (options.include) {
+        params.include = options.include.join(',');
+      }
+
+      request.get(this.path + endpoint)
+        .query(params)
+        .end((err, res) => {
+          if (res.body.failure) {
+            reject(res.body);
+          } else if (err) {
+            reject(err);
+          }
+
+          resolve(res.body);
+        });
+    });
+  }
+
 };
 
 export default FullSlate;
