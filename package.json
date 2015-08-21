@@ -29,6 +29,7 @@
   },
   "main": "lib/fullslate",
   "scripts": {
+    "prepublish": "./node_modules/.bin/babel src/FullSlate.js --out-file lib/FullSlate.js",
     "test": "./node_modules/.bin/mocha --timeout 10000 --compilers js:babel/register"
   },
   "license": "MIT"
