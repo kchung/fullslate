@@ -29,7 +29,7 @@
   },
   "main": "lib/fullslate",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --compilers js:babel/register"
+    "test": "./node_modules/.bin/mocha --timeout 10000 --compilers js:babel/register"
   },
   "license": "MIT"
 }
