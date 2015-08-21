@@ -292,6 +292,7 @@ class FullSlate {
    * @param {string} [options.start] Date format yyyy-mm-dd
    * @param {string} [options.stop] Date format yyyy-mm-dd
    * @param {string} [options.changed_since] Date format yyyy-mm-dd
+   * @throws Error will be thrown if API not initialized with token
    * @return {Promise.<(Array|Object), Error>} Resolve with events request.
    *   Reject with request or API error.
    */
