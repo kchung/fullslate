@@ -369,6 +369,43 @@ class FullSlate {
     });
   }
 
+  /**
+   * Vouchers resource, this is a private company resource so a token is
+   * required
+   * @param {number} [id] Product ID to limit details to a voucher product
+   * @throws Error will be thrown if API not initialized with token
+   * @return {Promise.<(Object|Array), Error>} Resolve with vouchers request.
+   *   Reject with request or API error.
+   */
+  vouchers(id) {
+    if (typeof this.token === 'undefined') {
+      throw new Error('FullSlate token missing');
+    }
+
+    return new Promise((resolve, reject) => {
+      let endpoint = 'vouchers';
+      let params = {
+        auth: this.token
+      };
+
+      if (id) {
+        endpoint = endpoint + `/${id}`;
+      }
+
+      request.get(this.path + endpoint)
+        .query(params)
+        .end((err, res) => {
+          if (res.body.failure) {
+            reject(res.body);
+          } else if (err) {
+            reject(err);
+          }
+
+          resolve(res.body);
+        });
+    });
+  }
+
 };
 
 export default FullSlate;
