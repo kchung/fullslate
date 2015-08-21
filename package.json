@@ -7,13 +7,15 @@
   ],
   "author": "Kevin Chung <kevin@chun.gd>",
   "contributors": [
-    { "name": "Kevin Chung", "email": "kevin@chun.gd" }
+    "Kevin Chung <kevin@chun.gd>"
   ],
   "homepage": "https://github.com/kchung/fullslate",
-  "bugs": "https://github.com/kchung/fullslate/issues",
+  "bugs": {
+    "url": "https://github.com/kchung/fullslate/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kchung/fullslate.git"
+    "url": "git+https://github.com/kchung/fullslate.git"
   },
   "engines": {
     "node": ">= v0.12.0"
