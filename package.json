@@ -27,7 +27,7 @@
   "dependencies": {
     "superagent": "^1.3.0"
   },
-  "main": "lib/fullslate",
+  "main": "lib/FullSlate",
   "scripts": {
     "prepublish": "./node_modules/.bin/babel src/FullSlate.js --out-file lib/FullSlate.js",
     "test": "./node_modules/.bin/mocha --timeout 10000 --compilers js:babel/register"
