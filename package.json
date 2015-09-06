@@ -1,7 +1,7 @@
 {
   "name": "fullslate",
   "version": "0.1.0",
-  "description": "NodeJS wrapper for the FullSlate API",
+  "description": "A simple JavaScript wrapper for the FullSlate API",
   "keywords": [
     "fullslate"
   ],
