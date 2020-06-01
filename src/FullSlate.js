@@ -62,10 +62,10 @@ class FullSlate {
           auth: this.token,
         })
         .end((err, res) => {
-          if (res.body.failure) {
-            reject(res.body);
+          if (res && res.body && res.body.failure) {
+            return reject(res.body);
           } else if (err) {
-            reject(err);
+            return reject(err);
           }
 
           resolve(res.body);
@@ -100,10 +100,10 @@ class FullSlate {
           auth: this.token,
         })
         .end((err, res) => {
-          if (res.body.failure) {
-            reject(res.body);
+          if (res && res.body && res.body.failure) {
+            return reject(res.body);
           } else if (err) {
-            reject(err);
+            return reject(err);
           }
 
           resolve(res.body);
@@ -153,10 +153,10 @@ class FullSlate {
       request.get(this.path + endpoint)
         .query(params)
         .end((err, res) => {
-          if (res.body.failure) {
-            reject(res.body);
+          if (res && res.body && res.body.failure) {
+            return reject(res.body);
           } else if (err) {
-            reject(err);
+            return reject(err);
           }
 
           resolve(res.body);
@@ -181,10 +181,10 @@ class FullSlate {
 
       request.get(this.path + endpoint)
         .end((err, res) => {
-          if (res.body.failure) {
-            reject(res.body);
+          if (res && res.body && res.body.failure) {
+            return reject(res.body);
           } else if (err) {
-            reject(err);
+            return reject(err);
           }
 
           resolve(res.body);
@@ -222,10 +222,10 @@ class FullSlate {
       request.post(this.path + endpoint)
         .send(options)
         .end((err, res) => {
-          if (res.body.failure) {
-            reject(res.body);
+          if (res && res.body && res.body.failure) {
+            return reject(res.body);
           } else if (err) {
-            reject(err);
+            return reject(err);
           }
 
           resolve(res.body);
@@ -272,10 +272,10 @@ class FullSlate {
       request.get(this.path + endpoint)
         .query(params)
         .end((err, res) => {
-          if (res.body.failure) {
-            reject(res.body);
+          if (res && res.body && res.body.failure) {
+            return reject(res.body);
           } else if (err) {
-            reject(err);
+            return reject(err);
           }
 
           resolve(res.body);
@@ -321,10 +321,10 @@ class FullSlate {
       request.get(this.path + endpoint)
         .query(params)
         .end((err, res) => {
-          if (res.body.failure) {
-            reject(res.body);
+          if (res && res.body && res.body.failure) {
+            return reject(res.body);
           } else if (err) {
-            reject(err);
+            return reject(err);
           }
 
           resolve(res.body);
@@ -358,10 +358,10 @@ class FullSlate {
       request.get(this.path + endpoint)
         .query(params)
         .end((err, res) => {
-          if (res.body.failure) {
-            reject(res.body);
+          if (res && res.body && res.body.failure) {
+            return reject(res.body);
           } else if (err) {
-            reject(err);
+            return reject(err);
           }
 
           resolve(res.body);
@@ -395,10 +395,10 @@ class FullSlate {
       request.get(this.path + endpoint)
         .query(params)
         .end((err, res) => {
-          if (res.body.failure) {
-            reject(res.body);
+          if (res && res.body && res.body.failure) {
+            return reject(res.body);
           } else if (err) {
-            reject(err);
+            return reject(err);
           }
 
           resolve(res.body);
