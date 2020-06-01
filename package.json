@@ -1,13 +1,14 @@
 {
   "name": "fullslate",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A simple JavaScript wrapper for the FullSlate API",
   "keywords": [
     "fullslate"
   ],
   "author": "Kevin Chung <kevin@chun.gd>",
   "contributors": [
-    "Kevin Chung <kevin@chun.gd>"
+    "Kevin Chung <kevin@chun.gd>",
+    "Feki Zied <feki.zied@perfectsoft.one>"
   ],
   "homepage": "https://github.com/kchung/fullslate",
   "bugs": {
@@ -23,10 +24,11 @@
   "devDependencies": {
     "babel": "~5.8.21",
     "chai": "~3.2.0",
+    "chai-as-promised": "^7.1.1",
     "mocha": "~2.2.5"
   },
   "dependencies": {
-    "superagent": "^1.3.0"
+    "superagent": "^3.8.3"
   },
   "main": "lib/FullSlate",
   "scripts": {
